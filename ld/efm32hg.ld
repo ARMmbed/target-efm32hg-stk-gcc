@@ -39,7 +39,6 @@ __vector_size = 0x94;
  *   __bss_start__
  *   __bss_end__
  *   __end__
- *   end
  *   __HeapLimit
  *   __StackLimit
  *   __StackTop
@@ -90,6 +89,17 @@ SECTIONS
 
   __etext = .;
   
+  /* Set stack size 1K. Stack overflow will trigger HardFault.
+   */
+  .stack (NOLOAD):
+  {
+    __stack_start__ = .;
+    *(.stack*);
+    . += 0x0400 - (. - __stack_start__);
+    . = ALIGN(4);
+    __stack_end__ = .;
+  } > RAM
+
   .data : AT (__etext)
   {
     __data_start__ = .;
@@ -139,11 +149,10 @@ SECTIONS
   .heap :
   {
     __end__ = .;
-    end = __end__;
-    _end = __end__;
+
     __heap_start = .;
     *(.heap*)
-    __HeapLimit = .;
+
   } > RAM
 
   /* heap limit is all the available memory, */
@@ -163,13 +172,10 @@ SECTIONS
 
   /* Set stack top to end of RAM, and stack limit move down by
    * size of stack_dummy section */
-  __StackTop = ORIGIN(RAM) + LENGTH(RAM);
-  __StackLimit = __StackTop - SIZEOF(.stack_dummy);
+  __StackTop = __stack_end__;
+  __StackLimit = __stack_start__;
   PROVIDE(__stack = __StackTop);
 
   /* Check if data + heap + stack exceeds RAM limit */
-  ASSERT(__StackLimit >= __HeapLimit, "region RAM overflowed with stack")
-
-  /* Check if FLASH usage exceeds FLASH size */
-  ASSERT( LENGTH(FLASH) >= (__etext + SIZEOF(.data)), "FLASH memory overflowed !")
+  ASSERT(__end__ <= __heap_end, "region RAM overflowed with stack")
 }
