@@ -1,0 +1,50 @@
+{
+  "name": "efm32hg-stk-gcc",
+  "version": "0.0.1",
+  "inherits": {
+    "mbed-gcc": "*"
+  },
+  "description": "GCC target description for the SLSTK3400A Starter Kit for EFM32HG.",
+  "licenses": [
+    {
+      "url": "https://spdx.org/licenses/Apache-2.0",
+      "type": "Apache-2.0"
+    }
+  ],
+  "keywords": [
+    "mbed-target:efm32hg",
+    "gcc"
+  ],
+  "similarTo": [
+    "efm32hg-stk",
+    "efm32hg",
+    "efm32",
+    "silabs",
+    "cortex-m3",
+    "armv7-m",
+    "arm",
+    "gcc"
+  ],
+  "toolchain": "CMake/toolchain.cmake",
+  "debug-server": [
+    "JLinkGDBServer",
+    "-if",
+    "SWD",
+    "-speed",
+    "4000",
+    "-device",
+    "EFM32HG322F64",
+    "-log",
+    "/tmp/jlink-efm.log"
+  ],
+  "scripts": {
+    "debug": [
+      "valinor",
+      "-t",
+      "uvision",
+      "--target",
+      "efm32hg-stk",
+      "$program"
+    ]
+  }
+}
