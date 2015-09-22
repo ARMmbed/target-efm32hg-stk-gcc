@@ -11,7 +11,7 @@ set(TARGET_EFM32HG_STK_GCC_TOOLCHAIN_INCLUDED 1)
 # definition that you're about to add to rely on the TARGET_LIKE_XXX
 # definitions that yotta provides based on the target.json file.
 #
-add_definitions("-DEFM32HG322F64 -DEFM32HG -DEFM32")
+add_definitions("-DEFM32HG322F64 -DEFM32HG -DEFM32 -DARM_MATH_CM0PLUS")
 
 # append non-generic flags, and set EFM32HG-specific link script
 

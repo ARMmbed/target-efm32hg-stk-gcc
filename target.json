@@ -20,8 +20,9 @@
     "efm32hg",
     "efm32",
     "silabs",
-    "cortex-m3",
-    "armv7-m",
+    "cortex-m0",
+    "cortex-m0plus",
+    "armv6-m",
     "arm",
     "gcc"
   ],

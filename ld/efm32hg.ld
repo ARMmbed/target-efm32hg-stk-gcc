@@ -141,9 +141,17 @@ SECTIONS
     __end__ = .;
     end = __end__;
     _end = __end__;
+    __heap_start = .;
     *(.heap*)
     __HeapLimit = .;
   } > RAM
+
+  /* heap limit is all the available memory, */
+  __heap_end = ORIGIN(RAM) + LENGTH(RAM);
+
+  PROVIDE(__heap_size = __heap_end - __heap_start);
+  PROVIDE(__mbed_sbrk_start = __heap_start);
+  PROVIDE(__mbed_krbs_start = __heap_end);
 
   /* .stack_dummy section doesn't contains any symbols. It is only
    * used for linker to calculate size of stack sections, and assign
