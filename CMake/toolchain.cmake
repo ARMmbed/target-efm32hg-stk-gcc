@@ -15,7 +15,7 @@ add_definitions("-DEFM32HG322F64 -DEFM32HG -DEFM32 -DARM_MATH_CM0PLUS")
 
 # append non-generic flags, and set EFM32HG-specific link script
 
-set(_CPU_COMPILATION_OPTIONS "-mcpu=cortex-m0 -mthumb -D__thumb2__ -g -g3 -gdwarf-3 -gstrict-dwarf -DARM_MATH_CM0")
+set(_CPU_COMPILATION_OPTIONS "-mcpu=cortex-m0 -mthumb -D__thumb2__ -g -g3 -gdwarf-3 -gstrict-dwarf")
 
 set(CMAKE_C_FLAGS_INIT             "${CMAKE_C_FLAGS_INIT} ${_CPU_COMPILATION_OPTIONS}")
 set(CMAKE_ASM_FLAGS_INIT           "${CMAKE_ASM_FLAGS_INIT} ${_CPU_COMPILATION_OPTIONS}")
