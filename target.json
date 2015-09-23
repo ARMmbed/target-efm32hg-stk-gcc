@@ -16,10 +16,10 @@
     "gcc"
   ],
   "similarTo": [
-    "efm32hg-stk",
-    "efm32hg",
-    "efm32",
     "silabs",
+    "efm32",
+    "efm32hg",
+    "efm32hg-stk",
     "cortex-m0plus",
     "armv6-m",
     "arm",
