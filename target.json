@@ -25,6 +25,12 @@
     "arm",
     "gcc"
   ],
+  "config": {
+    "minar": {
+      "initial_event_pool_size": 10,
+      "additional_event_pools_size": 10
+    }
+    },
   "toolchain": "CMake/toolchain.cmake",
   "debug-server": [
     "JLinkGDBServer",

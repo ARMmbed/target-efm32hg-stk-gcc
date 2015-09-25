@@ -5,9 +5,6 @@
 /* Example Code.                                                    */
 /*                                                                  */
 /* Silicon Laboratories, Inc. 2015                                  */
-/*                                                                  */
-/* Version 3.20.12 */
-/*                                                                  */
 MEMORY
 {
   FLASH (rx) : ORIGIN = 0x00000000, LENGTH = 65536
@@ -89,17 +86,6 @@ SECTIONS
 
   __etext = .;
   
-  /* Set stack size 1K. Stack overflow will trigger HardFault.
-   */
-  .stack (NOLOAD):
-  {
-    __stack_start__ = .;
-    *(.stack*);
-    . += 0x0400 - (. - __stack_start__);
-    . = ALIGN(4);
-    __stack_end__ = .;
-  } > RAM
-
   .data : AT (__etext)
   {
     __data_start__ = .;
@@ -153,29 +139,28 @@ SECTIONS
     __heap_start = .;
     *(.heap*)
 
+    /* Expand the heap to reach the stack boundary. */
+    ASSERT(. <= (ORIGIN(RAM) + LENGTH(RAM) - 0x400), "heap region overflowed into stack");
+    . += (ORIGIN(RAM) + LENGTH(RAM) - 0x400) - .;
   } > RAM
-
-  /* heap limit is all the available memory, */
-  __heap_end = ORIGIN(RAM) + LENGTH(RAM);
-
-  PROVIDE(__heap_size = __heap_end - __heap_start);
-  PROVIDE(__mbed_sbrk_start = __heap_start);
-  PROVIDE(__mbed_krbs_start = __heap_end);
+  PROVIDE(__heap_start = ADDR(.heap));
+  PROVIDE(__heap_size = SIZEOF(.heap));
+  PROVIDE(__mbed_sbrk_start = ADDR(.heap));
+  PROVIDE(__mbed_krbs_start = ADDR(.heap) + SIZEOF(.heap));
 
   /* .stack_dummy section doesn't contains any symbols. It is only
    * used for linker to calculate size of stack sections, and assign
    * values to stack symbols later */
-  .stack_dummy :
+  .stack (NOLOAD):
   {
-    *(.stack)
+    __StackLimit = .;
+    *(.stack*)
+    . += (ORIGIN(RAM) + LENGTH(RAM) - .);
   } > RAM
 
   /* Set stack top to end of RAM, and stack limit move down by
    * size of stack_dummy section */
-  __StackTop = __stack_end__;
-  __StackLimit = __stack_start__;
+  __StackTop = ORIGIN(RAM) + LENGTH(RAM);
+  __StackLimit = __StackTop - SIZEOF(.stack);
   PROVIDE(__stack = __StackTop);
-
-  /* Check if data + heap + stack exceeds RAM limit */
-  ASSERT(__end__ <= __heap_end, "region RAM overflowed with stack")
 }
