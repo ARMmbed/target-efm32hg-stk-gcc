@@ -1,6 +1,6 @@
 {
   "name": "efm32hg-stk-gcc",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "GCC target description for the SLSTK3400A Starter Kit for EFM32HG.",
   "licenses": [
     {
@@ -50,8 +50,8 @@
         "LED2": "LED0",
         "LED3": "LED0",
         "LED4": "LED1",
-        "SW0":  "PC9",
-        "SW1":  "PC10",
+        "SW0": "PC9",
+        "SW1": "PC10",
         "BTN0": "SW0",
         "BTN1": "SW1",
         "I2C_SDA": "PC0",
