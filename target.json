@@ -54,12 +54,6 @@
         "SW1": "PC10",
         "BTN0": "SW0",
         "BTN1": "SW1",
-        "I2C_SDA": "PC0",
-        "I2C_SCL": "PC1",
-        "SPI_MOSI": "PE10",
-        "SPI_MISO": "PE11",
-        "SPI_CLK": "PE12",
-        "SPI_CS": "PE13",
         "UART_TX": "PD4",
         "UART_RX": "PD5",
         "SERIAL_TX": "PD4",
@@ -69,6 +63,18 @@
         "USBTX": "PF2",
         "USBRX": "PA0",
         "EFM_BC_EN": "PA9"
+      },
+      "test-pins": {
+        "spi": {
+          "MOSI": "PE10",
+          "MISO": "PE11",
+          "SCLK": "PE12",
+          "SSEL": "PE13"
+        },
+        "i2c": {
+          "SDA": "PC0",
+          "SCL": "PC1"
+        }
       }
     },
     "modules": {
