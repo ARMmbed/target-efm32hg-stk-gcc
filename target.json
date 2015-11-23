@@ -33,6 +33,18 @@
       "initial_event_pool_size": 10,
       "additional_event_pools_size": 10
     },
+    "cmsis": {
+      "nvic": {
+        "has-vtor": true,
+        "ram_vector_address": "(&__start_vector_table__)",
+        "flash_vector_address": "0x0",
+        "user_irq_offset": 16,
+        "user_irq_number": 21
+      }
+    },
+    "uvisor": {
+      "present": false
+    },
     "hardware": {
       "clock": {
         "core": {
