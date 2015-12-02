@@ -1,7 +1,7 @@
 {
   "name": "efm32hg-stk-gcc",
   "version": "0.2.0",
-  "description": "GCC target description for the SLSTK3400A Starter Kit for EFM32HG.",
+  "description": "Official mbed build target for the SLSTK3400A Starter Kit for EFM32HG, using the GCC toolchain.",
   "licenses": [
     {
       "url": "https://spdx.org/licenses/Apache-2.0",
@@ -13,6 +13,7 @@
   },
   "keywords": [
     "mbed-target:efm32hg-stk",
+    "mbed-target:efm32hg_stk3400",
     "mbed-official",
     "efm32hg",
     "efm32hg-stk",
