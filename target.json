@@ -4,7 +4,7 @@
   "description": "Official mbed build target for the SLSTK3400A Starter Kit for EFM32HG, using the GCC toolchain.",
   "license": "Apache-2.0",
   "inherits": {
-    "efm32hg-gcc": "~0.1.0"
+    "efm32hg-gcc": "^1.0.0"
   },
   "keywords": [
     "mbed-target:efm32hg-stk",
