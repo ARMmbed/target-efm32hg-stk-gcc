@@ -1,6 +1,6 @@
 {
   "name": "efm32hg-stk-gcc",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Official mbed build target for the SLSTK3400A Starter Kit for EFM32HG, using the GCC toolchain.",
   "license": "Apache-2.0",
   "inherits": {
